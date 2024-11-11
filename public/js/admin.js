@@ -55,52 +55,6 @@ const obtenerDatos = async () => {
     mostrarMensaje('error al cargar productos')
   }
 }
-// obtenerDatos();
-
-// ver los datos enviados al back en el front
-// const mostrarProductos = (datos) => {
-//   let productos = ''
-//   const contenedor = document.querySelector('#divProdNuevo')
-//   datos.forEach(datos => {
-//     productos +=
-//       `<div class="card border border-1 border-dark d-flex flex-column align-items-center"
-//             style="width: 100%; max-width: 300px; margin:30px">
-//             <img src="fotos/${datos.img}" class="card-img-top" alt="...">
-//             <div class="card-body ">
-//                 <h4>${datos.titulo}</h4>
-//                 <p class="card-text ">${datos.descripcion}</p>
-//             </div>
-// <div class="d-flex justify-content-between align-items-center w-100 mb-2 px-2">
-//   <p class="card-text border border-secondary rounded p-2 mb-0">
-//     <strong>${datos.precio}</strong>
-//   </p>
-//   <div class="d-flex ms-auto">
-//     <a href="#prodEditar" class="btn btn-outline-warning me-2 edit onClick="eliminar(${datos.id})">
-//       <i class="bi bi-pencil"></i>
-//     </a>
-
-//     <a class="btn btn-outline-danger" type="submit" id="eliminar" onClick="eliminar(${datos.id})">
-//       <i class="bi bi-trash" id="eliminar"></i>
-//     </a>
-//   </div>
-// </div>
-
-
-//         </div>`
-//   })
-//   contenedor.innerHTML = productos
-
-//   // Añadir event listeners a los botones "Editar"
-//   const editButtons = document.querySelectorAll('.edit');
-//   editButtons.forEach(button => {
-//     button.addEventListener('click', function () {
-//       const formulario = document.getElementById('prodEditar');
-//       formulario.classList.toggle('newE');
-//     });
-//   });
-// }
-
-
 
 // agregar producto
 const formulario = document.forms['formAñadir']
@@ -122,8 +76,6 @@ formulario.addEventListener('submit', (event) => {
     return
   }
   document.querySelector('#mensaje').innerHTML = ''
-
-
 
   let nuevosDatosJson = JSON.stringify(newDatos)
   console.log(nuevosDatosJson)
@@ -185,7 +137,6 @@ const eliminar = (id) => {
   }
 }
 
-
 const formEditar = document.forms['formEditar']
 
 // editar los productos
@@ -193,27 +144,14 @@ const editar = (id) => {
 
   console.log(id)
 
-  // abro form editar
-  // document.querySelector("#formEditar").style.display='block'
-
   let prodEditar = {}
-
 
   productosRecibidos.filter(prod => { //recorro los datos del json para ubicar el prod al editar
     if (prod.id == id) {
       prodEditar = prod
     }
-
-
   })
 
-
-  // console.log(prodEditar)
-
-
-  // asignar valores obtenidos al formulario
-  // console.log(formEditar)
-  // console.log(prodEditar.id)
   formEditar.idEditar.value = prodEditar.id;
   formEditar.titulo.value = prodEditar.titulo;
   formEditar.descripcion.value = prodEditar.descripcion;
@@ -225,10 +163,10 @@ formEditar.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const nuevosDatos = {
-    id: formEditar.idEditar.value,
     titulo: formEditar.titulo.value,
     descripcion: formEditar.descripcion.value,
-    precio: formEditar.precio.value
+    precio: formEditar.precio.value,
+    id: formEditar.idEditar.value
   }
 
   if (!nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio) {
@@ -242,7 +180,7 @@ formEditar.addEventListener('submit', (event) => {
   // console.log(nuevosDatosJson)
   const enviarNewDatos = async()=>{
     try{
-      const enviarDatos = await fetch(endpoint+'/'+nuevosDatos.id, {
+      const enviarDatos = await fetch(endpoint, {
         method: 'put',
         headers: {
           'content-type': 'application/json'
