@@ -1,4 +1,4 @@
-fetch('https://four-api-rest-mysql.onrender.com/productos')
+fetch('/productos')
     .then(respuesta => respuesta.json())
     // .then(datos=> console.log(datos))
     .then(datos => mostrarProductos(datos))

@@ -6,8 +6,8 @@ const cors = require('cors')
 const dotenv = require('dotenv/config')
 
 const app = express();
-// const port = 3000;
-const port = process.env.MYSQL_ADDON_PORT || 3000;
+const port = 3000;
+// const port = process.env.MYSQL_ADDON_PORT || 3000;
 
 
 //Middleware
@@ -28,19 +28,19 @@ app.get('/productos', (req, res) => {
     })
 })
 
-app.get('/productos/:id', (req, res) => {
+// app.get('/productos/:id', (req, res) => {
 
-    //res.send('Buscar producto por ID')
-    const datos = leerDatos();
-    const prodEncontrado = datos.productos.find((p) => p.id == req.params.id)
-    if (!prodEncontrado) { // ! (no) o diferente
-        return res.status(404).json(`No se encuentra el producto`)
-    }
-    res.json({
-        mensaje: "producto encontrado",
-        producto: prodEncontrado
-    })
-})
+//     //res.send('Buscar producto por ID')
+//     const datos = leerDatos();
+//     const prodEncontrado = datos.productos.find((p) => p.id == req.params.id)
+//     if (!prodEncontrado) { // ! (no) o diferente
+//         return res.status(404).json(`No se encuentra el producto`)
+//     }
+//     res.json({
+//         mensaje: "producto encontrado",
+//         producto: prodEncontrado
+//     })
+// })
 
 app.post('/productos', (req, res) => {
     // console.log(req.body)
