@@ -1,4 +1,4 @@
-const endpoint = '/productos'
+const endpoint = 'https://four-api-rest-mysql.onrender.com/productos'
 
 mostrarMensaje = (mensaje) => {
   document.querySelector('#divMensaje').innerHTML = mensaje;
