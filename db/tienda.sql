@@ -31,16 +31,13 @@ CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `titulo` varchar(30) NOT NULL,
   `descripcion` varchar(30) NOT NULL,
-  `precio` int(11) NOT NULL
+  `precio` int(11) NOT NULL,
+  `imagen` varchar(30) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
-
-INSERT INTO `productos` (`id`, `titulo`, `descripcion`, `precio`) VALUES
-(1, 'uuukkk', 'aaa', 123),
-(2, 'aaaa', 'eeeee', 5);
 
 --
 -- Índices para tablas volcadas

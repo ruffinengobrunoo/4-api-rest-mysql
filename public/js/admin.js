@@ -4,6 +4,15 @@ mostrarMensaje = (mensaje) => {
   document.querySelector('#divMensaje').innerHTML = mensaje;
 }
 
+let form=document.querySelector('#prodNuevo')
+form.style.display= 'none';
+let añadir=document.querySelector('#añadir')
+
+  añadir.addEventListener('click', ()=>{
+    
+    form.style.display = "block";
+  });
+
 // Event listener para el botón "Añadir Producto"
 document.getElementById('añadir').addEventListener('click', function () {
   const formulario = document.getElementById('prodNuevo');
@@ -26,7 +35,7 @@ const obtenerDatos = async () => {
       productos +=
         `<div class="card border border-1 border-dark d-flex flex-column align-items-center"
                   style="width: 100%; max-width: 300px; margin:30px">
-                  <img src="fotos/${prod.img}" class="card-img-top" alt="...">
+                  <img src="./fotos/${prod.imagen}" class="card-img-top" alt="...">
                   <div class="card-body ">
                       <h4>${prod.titulo}</h4>
                       <p class="card-text ">${prod.descripcion}</p>
@@ -64,14 +73,14 @@ formulario.addEventListener('submit', (event) => {
   let titulo = formulario.titulo.value
   let descripcion = formulario.descripcion.value
   let precio = formulario.precio.value
-  let img = formulario.titulo.value + ".jpeg";
+  let imagen = formulario.imagen.value + ".jpg";
   // console.log(titulo,descripcion,precio);
 
   // Objetos con los datos obtenidos en el formulario
-  let newDatos = { titulo: titulo, descripcion: descripcion, precio: precio, img: img }
+  let newDatos = { titulo: titulo, descripcion: descripcion, precio: precio, imagen: imagen }
 
 
-  if (!newDatos.titulo || !newDatos.descripcion || !newDatos.precio) {
+  if (!newDatos.titulo || !newDatos.descripcion || !newDatos.precio || !newDatos.imagen) {
     document.querySelector('#mensaje').innerHTML = '*Complete todos los datos'
     return
   }
@@ -156,6 +165,7 @@ const editar = (id) => {
   formEditar.titulo.value = prodEditar.titulo;
   formEditar.descripcion.value = prodEditar.descripcion;
   formEditar.precio.value = prodEditar.precio;
+  formEditar.imagen.value = prodEditar.imagen;
 }
 
 formEditar.addEventListener('submit', (event) => {
@@ -166,10 +176,11 @@ formEditar.addEventListener('submit', (event) => {
     titulo: formEditar.titulo.value,
     descripcion: formEditar.descripcion.value,
     precio: formEditar.precio.value,
-    id: formEditar.idEditar.value
+    imagen: formEditar.imagen.value+".jpg",
+    id: formEditar.idEditar.value,
   }
 
-  if (!nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio) {
+  if (!nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio || !nuevosDatos.imagen) {
     document.querySelector('#mensajeEditar').innerHTML = '*Complete todos los datos'
     return
   }

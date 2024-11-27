@@ -46,7 +46,7 @@ app.post('/productos', (req, res) => {
     // console.log(req.body)
     // console.log(Object.values(req.body));
     const values = Object.values(req.body);
-    const sql = "INSERT INTO productos (titulo, descripcion, precio) VALUES (?, ?, ?)";
+const sql = "INSERT INTO productos (titulo, descripcion, precio, imagen) VALUES (?, ?, ?, ?)";
     db.query(sql, values, (err, result) => {
         if (err) {
             console.error('error de lectura')
@@ -62,7 +62,7 @@ app.put('/productos', (req, res) => {
     // res.send('Actualizar producto')
     const valores = Object.values(req.body);
     console.log(valores)
-    const sql = "UPDATE productos SET titulo=?, descripcion=?, precio=? WHERE id=?"
+    const sql = "UPDATE productos SET titulo=?, descripcion=?, precio=?, imagen=? WHERE id=?"
     db.query(sql, valores, (err, result) => {
         if (err) {
             console.error('error al modificar prod')
