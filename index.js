@@ -6,8 +6,8 @@ const cors = require('cors')
 const dotenv = require('dotenv/config')
 
 const app = express();
-const port = 3000;
-// const port = process.env.MYSQL_ADDON_PORT || 3000;
+// const port = 3000;
+const port = process.env.MYSQL_ADDON_PORT || 3000;
 
 
 //Middleware
