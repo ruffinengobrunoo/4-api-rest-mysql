@@ -35,7 +35,7 @@ const obtenerDatos = async () => {
       productos +=
         `<div class="card border border-1 border-dark d-flex flex-column align-items-center"
                   style="width: 100%; max-width: 300px; margin:30px">
-                  <img src="./fotos/${prod.imagen}" class="card-img-top" alt="...">
+                  <img src="./fotos/${prod.imagen}.jpg" class="card-img-top" alt="...">
                   <div class="card-body ">
                       <h4>${prod.titulo}</h4>
                       <p class="card-text ">${prod.descripcion}</p>
@@ -73,7 +73,7 @@ formulario.addEventListener('submit', (event) => {
   let titulo = formulario.titulo.value
   let descripcion = formulario.descripcion.value
   let precio = formulario.precio.value
-  let imagen = formulario.imagen.value + ".jpg";
+  let imagen = formulario.imagen.value
   // console.log(titulo,descripcion,precio);
 
   // Objetos con los datos obtenidos en el formulario
@@ -176,14 +176,15 @@ formEditar.addEventListener('submit', (event) => {
     titulo: formEditar.titulo.value,
     descripcion: formEditar.descripcion.value,
     precio: formEditar.precio.value,
-    imagen: formEditar.imagen.value+".jpg",
+    imagen: formEditar.imagen.value,
     id: formEditar.idEditar.value,
   }
 
-  if (!nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio || !nuevosDatos.imagen) {
+  if (!nuevosDatos.titulo || !nuevosDatos.descripcion || !nuevosDatos.precio) {
     document.querySelector('#mensajeEditar').innerHTML = '*Complete todos los datos'
     return
   }
+
   document.querySelector('#mensaje').innerHTML = ''
 
 
